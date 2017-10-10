@@ -22,4 +22,4 @@ def idLatest = idInfo.id[0]
 testRunner.testCase.setPropertyValue("NewID", idLatest.toString())
 log.info
 
-</script></con:config></con:testStep><con:properties><con:property><con:name>NewID</con:name><con:value>294</con:value></con:property></con:properties><con:reportParameters/></con:testCase>
+</script></con:config></con:testStep><con:testStep type="goto" name="Conditional Goto" id="696d1453-f1b1-4a46-99a0-60a9c5aeedbb"><con:settings/><con:config xsi:type="con:GotoStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/></con:testStep><con:properties><con:property><con:name>NewID</con:name><con:value>294</con:value></con:property></con:properties><con:reportParameters/></con:testCase>
