@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:interface xsi:type="con:RestService" id="d9295e6e-875b-4340-9aa4-d6f6a68eff5e" wadlVersion="http://wadl.dev.java.net/2009/02" name="Excelsior API" type="rest" basePath="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="d9295e6e-875b-4340-9aa4-d6f6a68eff5efileName">Excelsior-API</con:setting></con:settings><con:definitionCache type="TEXT" rootPart=""/><con:endpoints/></con:interface>
