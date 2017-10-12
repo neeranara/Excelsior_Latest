@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="0b188ad7-2f7a-4869-abd1-ac41902057cb" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC-2.2-10" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="0b188ad7-2f7a-4869-abd1-ac41902057cbfileName">TC-2.2-10</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="GetToken_GTPW" id="d707098d-2d04-466c-bdb8-a55718b7c509"><con:settings/><con:config service="REST Service 1" resourcePath="/connect/token" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GetToken_GTPW" id="63c49e61-2aee-454a-be4b-c0be665b8ae9" mediaType="application/x-www-form-urlencoded" postQueryString="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/connect/token</con:originalUri><con:assertion type="JsonPath Existence Match" id="a1789372-d8a5-4fe3-a097-addffc8a54bb" name="Check for existence of [access_token]"><con:configuration><path>$['access_token']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Origin" value="https://excelsiorqa.eyekor.com"/>
+  <con:entry key="password" value="${#Project#password}"/>
+  <con:entry key="grant_type" value="password"/>
+  <con:entry key="scope" value="webapi offline_access"/>
+  <con:entry key="client_secret" value="ExcelsiorWebSecret"/>
+  <con:entry key="client_id" value="9E1E36E2-BE2B-4D53-9B18-8078607CABA4"/>
+  <con:entry key="Content-Type" value="application/x-www-form-urlencoded"/>
+  <con:entry key="username" value="${#Project#username}"/>
+</con:parameters><con:parameterOrder><con:entry>Origin</con:entry><con:entry>Content-Type</con:entry><con:entry>grant_type</con:entry><con:entry>client_id</con:entry><con:entry>client_secret</con:entry><con:entry>scope</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="PropertyTransfer 1" id="c11551b7-0a8e-485c-9d88-bea3ba4279d5"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>access_token</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>GetToken_GTPW</con:sourceStep><con:sourcePath>$['access_token']</con:sourcePath><con:targetType>current_token</con:targetType><con:targetStep>#Project#</con:targetStep><con:targetPath/><con:type>JSONPATH</con:type><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="EditUser_Invalid" id="3fff6234-dee0-4add-b9c0-672d2958988f"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Users/{id}" methodName="ApiV1UsersByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="EditUser_Invalid" id="4ab11f1e-831c-4e79-a23e-92e1196461eb" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "country": {
+   "id": 1,
+    "name": "United States"
+  },
+  "city": null,
+  "address1": null,
+  "address2": null,
+  "stateProvince": null,
+  "zipCode": null,
+  "phoneNumber": null,
+  "countryId": 1,
+  "id": "${#TestCase#NewID}",
+  "aspnetUserId": null,
+  "userName": "api_${#TestCase#NewID}",
+  "firstName": "API",
+  "middleName": null,
+  "lastName": "Test ${#TestCase#NewID}",
+  "email": "",
+  "jobTitle": null,
+  "isActive": true,
+  "affiliationId": 2,
+  "roleId": "f8f21011-4613-40d1-8c99-63b7a992aa62",
+  "affiliation": {
+    "id": 2,
+    "name": "EyeKor",
+    "isActive": true,
+    "countryId": 1,
+    "country": {
+      "id": 1,
+      "name": "United States"
+    },
+    "phoneNumber": null,
+     "city": "Madison",
+     "stateProvince": "Wisconsin",
+     "address": "6527 Normandy Lane",
+      "zip": "53719",
+      "extAddress": "#100"
+  },
+ "role":{
+            "loweredName": "data quality evaluator",
+            "description": "Data Quality Evaluator",
+            "id": "f8f21011-4613-40d1-8c99-63b7a992aa62",
+            "name": "Data Quality Evaluator"
+        }
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Users/304</con:originalUri><con:assertion type="JsonPath Match" id="f53a1ecd-b53e-411a-857a-7736049af6ca" name="Match content of [errorMessage]"><con:configuration><path>$['result'][0]['errorMessage']</path><content>The Email field is required.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="${#TestSuite#NewReg_ID}"/>
+</con:parameters><con:parameterOrder><con:entry>id</con:entry><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="EditUser_Valid" id="f8636acc-3570-46ba-bdea-2d45856b825d"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Users/{id}" methodName="ApiV1UsersByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="EditUser_Valid" id="4ab11f1e-831c-4e79-a23e-92e1196461eb" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "country": {
+   "id": 33,
+    "name": "Canada"
+  },
+  "city": "Toronto",
+  "address1": "4110 Yonge Street",
+  "address2": null,
+  "stateProvince": "Ontario",
+  "zipCode": "M2P 2B7",
+  "phoneNumber": "444-4444",
+  "countryId": 33,
+  "id": "${#TestCase#NewID}",
+  "aspnetUserId": null,
+  "userName": "api_${#TestCase#NewID}",
+  "firstName": "API_edit",
+  "middleName": "MN_Edit",
+  "lastName": "Test ${#TestCase#NewID} Edit",
+  "email": "api_${#TestCase#NewID}edit@hostlaba.com",
+  "jobTitle": null,
+  "isActive": true,
+  "affiliationId": 2,
+  "roleId": "f8f21011-4613-40d1-8c99-63b7a992aa62",
+  "affiliation": {
+    "id": 2,
+    "name": "EyeKor",
+    "isActive": true,
+    "countryId": 1,
+    "country": {
+      "id": 1,
+      "name": "United States"
+    },
+     "phoneNumber": null,
+     "city": "Madison",
+     "stateProvince": "Wisconsin",
+     "address": "6527 Normandy Lane",
+      "zip": "53719",
+      "extAddress": "#100"
+  },
+ "role":{
+            "loweredName": "data quality evaluator",
+            "description": "Data Quality Evaluator",
+            "id": "f8f21011-4613-40d1-8c99-63b7a992aa62",
+            "name": "Data Quality Evaluator"
+        }
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Users/304</con:originalUri><con:assertion type="JsonPath Match" id="d5bdabc7-bbc2-4610-9c09-92a768367b1a" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="${#TestSuite#NewReg_ID}"/>
+</con:parameters><con:parameterOrder><con:entry>id</con:entry><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>d707098d-2d04-466c-bdb8-a55718b7c509</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
