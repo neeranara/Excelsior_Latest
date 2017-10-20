@@ -98,8 +98,52 @@ else
   "lateralityReceived": "B"
 }</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101998</con:originalUri><con:assertion type="JsonPath Match" id="4e818bb1-a42d-493d-8fd5-119044b75a5f" name="Match content of [exception]"><con:configuration><path>$['exception']</path><content>Invalid password.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
   <con:entry key="Authorization" value="${#Project#token_type}${LogIn_CheckPWReset#Response#$['access_token']}"/>
-  <con:entry key="reason" value="api_test"/>
-  <con:entry key="password" value="invalidPW"/>
-  <con:entry key="id" value="101998"/>
+  <con:entry key="fields" value=""/>
+  <con:entry key="Reason" value=""/>
+  <con:entry key="Password" value=""/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="Copy of DataSource Loop" id="d1c30107-a444-4547-9128-fbc1c3cfaa26"><con:settings/><con:config><dataSourceStep>LockedAccount_DS</dataSourceStep><targetStep>EditMedia_Request</targetStep></con:config></con:testStep><con:testStep type="restrequest" name="EditMediaRequest_InvalidPW_Attempt3" id="1684e32d-6b26-4457-a0ff-e00be1d2ab19"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="EditMediaRequest_InvalidPW_Attempt3" id="6dcd9bfd-80ba-4068-94b1-1dcc65897f2b" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "id": 101998,
+  "studyDate": "Fri, 05 May 2017 15:00:00 GMT",
+  "subjectId": 70634,
+  "scheduleId": 10274,
+  "equipmentId": 20051,
+  "photographerId": 140,
+  "seriesGroupId": null,
+  "colorCategoryId": null,
+  "assignedToId": 42,
+  "worflowTemplateStepId": 423,
+  "lateralityReceived": "B"
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101998</con:originalUri><con:assertion type="JsonPath Match" id="4e818bb1-a42d-493d-8fd5-119044b75a5f" name="Match content of [exception]"><con:configuration><path>$['exception']</path><content>Invalid password.</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${LogIn_CheckPWReset#Response#$['access_token']}"/>
   <con:entry key="fields" value="studyDate,equipmentId,photographerId,lateralityReceived"/>
-</con:parameters><con:parameterOrder><con:entry>id</con:entry><con:entry>fields</con:entry><con:entry>password</con:entry><con:entry>reason</con:entry><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="Copy of DataSource Loop" id="d1c30107-a444-4547-9128-fbc1c3cfaa26"><con:settings/><con:config><dataSourceStep>LockedAccount_DS</dataSourceStep><targetStep>EditMedia_Request</targetStep></con:config></con:testStep><con:properties><con:property><con:name>Reset_PW</con:name><con:value>@eyekor1</con:value></con:property></con:properties><con:reportParameters/><con:breakPoints><con:testStepId>795d5927-5066-4fd1-8cdc-a5b39efc1077</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>4fc77c2f-77ff-4967-8055-672ae298769f</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>6506e861-6a96-433b-b213-38de3d996166</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>21de1580-cc7f-45fa-94bb-763408aefb21</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>74435030-5b8b-41da-8a3c-a0f05e19898a</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>faf24f9b-e82e-44cc-9f76-f5b08e6e8411</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>e4ed4051-256b-48b2-81d8-989c4ffddafe</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
+  <con:entry key="Reason" value="Test to lock account"/>
+  <con:entry key="Password" value="invalidPW"/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Reset_PW" id="a5c21b75-ed27-45f0-90cc-911bdc2c8e32"><con:settings/><con:config><script>for( r in testRunner.results )
+log.info "TestStep [" + r.testStep.name + "] finished with status " + r.status
+
+def myList = []
+for( r in testRunner.results )
+{
+		myList.add(r.testStep.name)
+		
+}
+if(myList.contains("Reset_Again"))
+{
+	testRunner.testCase.setPropertyValue("Reset_PW", "@eyekor1")
+    log.info("@eyekor2 is the new login password")
+}
+else
+{
+	testRunner.testCase.setPropertyValue("Reset_PW", "@eyekor2")
+	log.info("@eyekor1 is the new login password")
+}
+</script></con:config></con:testStep><con:testStep type="restrequest" name="LogIn_CheckPW" id="cb91df1a-fda2-4bcf-b295-3846ee3e47bb"><con:settings/><con:config service="REST Service 1" resourcePath="/connect/token" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="LogIn_CheckPW" id="63c49e61-2aee-454a-be4b-c0be665b8ae9" mediaType="application/x-www-form-urlencoded" postQueryString="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/connect/token</con:originalUri><con:assertion type="JsonPath Existence Match" id="35a03ac8-d07e-4c84-bf14-4839e437b18f" name="Check for existence of [access_token]"><con:configuration><path>$['access_token']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Origin" value="https://excelsiorqa.eyekor.com"/>
+  <con:entry key="password" value="${#TestCase#Reset_PW}"/>
+  <con:entry key="grant_type" value="password"/>
+  <con:entry key="scope" value="webapi offline_access"/>
+  <con:entry key="client_secret" value="ExcelsiorWebSecret"/>
+  <con:entry key="client_id" value="9E1E36E2-BE2B-4D53-9B18-8078607CABA4"/>
+  <con:entry key="Content-Type" value="application/x-www-form-urlencoded"/>
+  <con:entry key="username" value="${#Project#username}"/>
+</con:parameters><con:parameterOrder><con:entry>Origin</con:entry><con:entry>Content-Type</con:entry><con:entry>grant_type</con:entry><con:entry>client_id</con:entry><con:entry>client_secret</con:entry><con:entry>scope</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>Reset_PW</con:name><con:value>@eyekor1</con:value></con:property></con:properties><con:reportParameters/><con:breakPoints><con:testStepId>795d5927-5066-4fd1-8cdc-a5b39efc1077</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>4fc77c2f-77ff-4967-8055-672ae298769f</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>6506e861-6a96-433b-b213-38de3d996166</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>21de1580-cc7f-45fa-94bb-763408aefb21</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>74435030-5b8b-41da-8a3c-a0f05e19898a</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>faf24f9b-e82e-44cc-9f76-f5b08e6e8411</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>e4ed4051-256b-48b2-81d8-989c4ffddafe</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>

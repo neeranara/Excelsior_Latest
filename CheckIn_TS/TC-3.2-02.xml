@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="625efafa-6ef8-4e15-b0bc-abc35fa17077" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC-3.2-02" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="625efafa-6ef8-4e15-b0bc-abc35fa17077fileName">TC-3.2-02</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="Admin_Login" id="320659cb-2a3c-49ab-8bea-cd4217aa28c8"><con:settings/><con:config service="REST Service 1" resourcePath="/connect/token" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Admin_Login" id="63c49e61-2aee-454a-be4b-c0be665b8ae9" mediaType="application/x-www-form-urlencoded" postQueryString="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/connect/token</con:originalUri><con:assertion type="JsonPath Existence Match" id="a1789372-d8a5-4fe3-a097-addffc8a54bb" name="Check for existence of [access_token]"><con:configuration><path>$['access_token']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Origin" value="https://excelsiorqa.eyekor.com"/>
+  <con:entry key="password" value="${#Project#password}"/>
+  <con:entry key="grant_type" value="password"/>
+  <con:entry key="scope" value="webapi offline_access"/>
+  <con:entry key="client_secret" value="ExcelsiorWebSecret"/>
+  <con:entry key="client_id" value="9E1E36E2-BE2B-4D53-9B18-8078607CABA4"/>
+  <con:entry key="Content-Type" value="application/x-www-form-urlencoded"/>
+  <con:entry key="username" value="${#Project#username}"/>
+</con:parameters><con:parameterOrder><con:entry>Origin</con:entry><con:entry>Content-Type</con:entry><con:entry>grant_type</con:entry><con:entry>client_id</con:entry><con:entry>client_secret</con:entry><con:entry>scope</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="Access_Token_Transfer" id="bd57baa7-f621-4006-be7b-1af8cb96c596"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>access_token</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Admin_Login</con:sourceStep><con:sourcePath>$['access_token']</con:sourcePath><con:targetType>current_token</con:targetType><con:targetStep>#Project#</con:targetStep><con:targetPath/><con:type>JSONPATH</con:type><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="Edit_SeriesDetails" id="5cfdd481-eebc-4ad5-888a-007d6b465ecf"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Edit_SeriesDetails" id="6dcd9bfd-80ba-4068-94b1-1dcc65897f2b" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "id": 101491,
+  "studyDate": "${=new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())}",
+  "subjectId": 70469,
+  "scheduleId": 10258,
+  "equipmentId": 20068,
+  "photographerId": 188,
+  "seriesGroupId": null,
+  "colorCategoryId": null,
+  "assignedToId": 252,
+  "worflowTemplateStepId": 399,
+  "lateralityReceived": "R"
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101491</con:originalUri><con:assertion type="JsonPath Existence Match" id="b3ca8e4f-91c9-44e8-a259-556f18b54557" name="Check for existence of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="b239b1d8-4f4d-49cb-880d-63d1d69d6262" name="Match content of [timePointName]"><con:configuration><path>$['result']['timePointName']</path><content>Eligibility</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="725d5f46-4557-41d8-af40-c9d6d500206d" name="Match content of [workflowStepName]"><con:configuration><path>$['result']['workflowStepName']</path><content>Check-in</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101491"/>
+  <con:entry key="fields" value="studyDate,equipmentId,photographerId,lateralityReceived"/>
+  <con:entry key="Reason" value="Edit series details"/>
+  <con:entry key="Password" value="@eyekor1"/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Ungroup Series" id="88f77a22-2642-4300-94de-1721849ff884"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Ungroup Series" id="6dcd9bfd-80ba-4068-94b1-1dcc65897f2b" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "id": 101959,
+  "studyDate": "Tue, 05 Apr 2016 05:00:00 GMT",
+  "subjectId": 70509,
+  "scheduleId": 10257,
+  "equipmentId": 20051,
+  "photographerId": 140,
+  "seriesGroupId": null,
+  "colorCategoryId": null,
+  "assignedToId": 142,
+  "worflowTemplateStepId": 394,
+  "lateralityReceived": null
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/</con:originalUri><con:assertion type="JsonPath Match" id="c19606aa-2022-465e-a052-deb301db4e1c" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="d4e049ae-08ff-45b2-8c64-d7d88a45c8a7" name="Match content of [seriesGroupId]"><con:configuration><path>$['result']['seriesGroupId']</path><content>${Ungroup Series#Request#$['seriesGroupId']}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101959"/>
+  <con:entry key="fields" value="SeriesGroupId"/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Group_Series" id="52270054-2c67-4297-b862-1b2b449c7790"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Group_Series" id="6dcd9bfd-80ba-4068-94b1-1dcc65897f2b" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "id": 101959,
+  "studyDate": "Tue, 05 Apr 2016 05:00:00 GMT",
+  "subjectId": 70509,
+  "scheduleId": 10257,
+  "equipmentId": 20051,
+  "photographerId": 140,
+  "seriesGroupId": 20340,
+  "colorCategoryId": null,
+  "assignedToId": 142,
+  "worflowTemplateStepId": 394,
+  "lateralityReceived": null
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101959</con:originalUri><con:assertion type="JsonPath Match" id="b0a7846c-c42a-46ee-9807-0c52c3e64f30" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="9653ae05-a531-4f2b-b9d2-e1c79eab7948" name="Match content of [seriesGroupId]"><con:configuration><path>$['result']['seriesGroupId']</path><content>${Group_Series#Request#$['seriesGroupId']}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101959"/>
+  <con:entry key="fields" value="SeriesGroupId"/>
+  <con:entry key="Reason" value=""/>
+  <con:entry key="Password" value=""/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Add_ColorCategory" id="008ef4f0-2dee-4cf6-b919-eaf3fcd73c3b"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Add_ColorCategory" id="6dcd9bfd-80ba-4068-94b1-1dcc65897f2b" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "id": 101491,
+  "studyDate": "${=new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())}",
+  "subjectId": 70469,
+  "scheduleId": 10258,
+  "equipmentId": 20068,
+  "photographerId": 188,
+  "seriesGroupId": null,
+  "colorCategoryId": 3,
+  "assignedToId": 252,
+  "worflowTemplateStepId": 399,
+  "lateralityReceived": "R"
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/</con:originalUri><con:assertion type="JsonPath Match" id="172f38c5-eee0-4636-92b6-9e50806ed8bb" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="f8fc2f7c-7577-4715-9b92-063395eaee46" name="Match content of [colorCategoryId]"><con:configuration><path>$['result']['colorCategoryId']</path><content>${Add_ColorCategory#RawRequest#$['colorCategoryId']}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101491"/>
+  <con:entry key="fields" value="ColorCategoryId"/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Remove_ColorCategory" id="4fd1a58d-8c39-4471-a7c4-dcac4076412d"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdPut" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Remove_ColorCategory" id="6dcd9bfd-80ba-4068-94b1-1dcc65897f2b" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "id": 101491,
+  "studyDate": "${=new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())}",
+  "subjectId": 70469,
+  "scheduleId": 10258,
+  "equipmentId": 20068,
+  "photographerId": 188,
+  "seriesGroupId": null,
+  "colorCategoryId": 0,
+  "assignedToId": 252,
+  "worflowTemplateStepId": 399,
+  "lateralityReceived": "R"
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/</con:originalUri><con:assertion type="JsonPath Match" id="c19606aa-2022-465e-a052-deb301db4e1c" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="48e8686d-e748-46b9-8a66-959b411b3eea" name="Match content of [colorCategoryId]"><con:configuration><path>$['result']['colorCategoryId']</path><content>${Remove_ColorCategory#RawRequest#$['colorCategoryId']}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101491"/>
+  <con:entry key="fields" value="ColorCategoryId"/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>id</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>88f77a22-2642-4300-94de-1721849ff884</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
