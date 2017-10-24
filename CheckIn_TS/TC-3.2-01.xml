@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="e5be34ee-f406-4da3-aed2-afc466c1a238" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC-3.2-01" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="e5be34ee-f406-4da3-aed2-afc466c1a238fileName">TC-3.2-01</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="Admin_Login" id="dea91b37-4539-4238-89b3-c657ed9a8bb6"><con:settings/><con:config service="REST Service 1" resourcePath="/connect/token" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of Admin_Login" id="63c49e61-2aee-454a-be4b-c0be665b8ae9" mediaType="application/x-www-form-urlencoded" postQueryString="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/connect/token</con:originalUri><con:assertion type="JsonPath Existence Match" id="a1789372-d8a5-4fe3-a097-addffc8a54bb" name="Check for existence of [access_token]"><con:configuration><path>$['access_token']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Origin" value="https://excelsiorqa.eyekor.com"/>
+  <con:entry key="password" value="${#Project#password}"/>
+  <con:entry key="grant_type" value="password"/>
+  <con:entry key="scope" value="webapi offline_access"/>
+  <con:entry key="client_secret" value="ExcelsiorWebSecret"/>
+  <con:entry key="client_id" value="9E1E36E2-BE2B-4D53-9B18-8078607CABA4"/>
+  <con:entry key="Content-Type" value="application/x-www-form-urlencoded"/>
+  <con:entry key="username" value="${#Project#username}"/>
+</con:parameters><con:parameterOrder><con:entry>Origin</con:entry><con:entry>Content-Type</con:entry><con:entry>grant_type</con:entry><con:entry>client_id</con:entry><con:entry>client_secret</con:entry><con:entry>scope</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="AccessToken_Transfer" id="96685e8f-4b8f-4699-b295-1a10dfb46f81"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>access_token</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Admin_Login</con:sourceStep><con:sourcePath>$['access_token']</con:sourcePath><con:targetType>current_token</con:targetType><con:targetStep>#Project#</con:targetStep><con:targetPath/><con:type>JSONPATH</con:type><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="GetSeriesDetails" id="39fbcd0d-da90-4e7f-b8b6-918a13b95fd6"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}" methodName="ApiV1SeriesByIdGet" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GetSeriesDetails" id="0ae2a02d-9fb6-4927-9239-c92256026abc" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101634</con:originalUri><con:assertion type="JsonPath Match" id="0428fdda-0b07-485d-9e3b-38f67bc75899" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Existence Match" id="286d65ba-f96b-4f8a-bbd6-d47c9214f576" name="Check for existence of [studyId]"><con:configuration><path>$['result']['subject']['site']['studyId']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101634"/>
+  <con:entry key="fields" value=""/>
+  <con:entry key="Reason" value=""/>
+  <con:entry key="Password" value=""/>
+</con:parameters><con:parameterOrder><con:entry>Authorization</con:entry><con:entry>fields</con:entry><con:entry>Password</con:entry><con:entry>Reason</con:entry><con:entry>newjhgjygjyhg</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="GetAllSeries" id="8dd00319-7f24-46a1-b929-e254b1dd5a96"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series" methodName="ApiV1SeriesGet" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GetAllSeries" id="8b751f48-6944-4b86-8661-7ec4babe1aa2" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series</con:originalUri><con:assertion type="JsonPath Match" id="aa5ac088-efee-48d5-839a-8bad14e01e1b" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="bcf94a74-ca2f-44db-92ce-d49f15bfce83" name="Match content of [studyId]"><con:configuration><path>$['result'][0]['schedule']['timePoint']['studyId']</path><content>${GetSeriesDetails#Response#$['result']['subject']['site']['studyId']}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="pageSize" value="1000"/>
+  <con:entry key="studyId" value="${GetSeriesDetails#Response#$['result']['subject']['site']['studyId']}"/>
+  <con:entry key="step" value="Check-in"/>
+  <con:entry key="page" value="1"/>
+  <con:entry key="assignedTo" value="None"/>
+</con:parameters><con:parameterOrder><con:entry>studyId</con:entry><con:entry>step</con:entry><con:entry>categoryId</con:entry><con:entry>dataType</con:entry><con:entry>siteId</con:entry><con:entry>subjectId</con:entry><con:entry>timePointListId</con:entry><con:entry>procedureId</con:entry><con:entry>assignedTo</con:entry><con:entry>seriesGroupId</con:entry><con:entry>subjectGroupId</con:entry><con:entry>subjectCohortId</con:entry><con:entry>poolType</con:entry><con:entry>page</con:entry><con:entry>pageSize</con:entry><con:entry>search</con:entry><con:entry>sort</con:entry><con:entry>filter</con:entry><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Assign_Series" id="5624c1d5-3138-4355-a45b-3be78dfbb901"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}/assign" methodName="ApiV1SeriesByIdAssignPost" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Copy of Assign_Series 2" id="c7cc77fc-f584-46dd-961c-d6cd654d3586" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request/><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101634/assign</con:originalUri><con:assertion type="JsonPath Match" id="3cc6ac08-d3fe-45b2-9bfa-e941a930e9cc" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="007195b1-67e3-4a13-8961-91dd680c144f" name="Script Assertion"><con:configuration><scriptText>import groovy.json.JsonSlurper
+def json_1 = new JsonSlurper().parseText(messageExchange.response.contentAsString)
+
+//get the ids generated by the Assign series request
+resultId = json_1.result.id
+assignedToId = json_1.result.assignedToId
+log.info resultId
+log.info assignedToId
+
+//fetch all the series that match the series group id of the assigned series
+def responseGetAllSeries = context.expand( '${GetAllSeries#Response}' ) 
+def json_2 = new JsonSlurper().parseText(responseGetAllSeries)
+
+def getSeriesResponse = context.expand( '${GetSeriesDetails#Response#$[\'result\'][\'seriesGroupId\']}' ) as int
+log.info getSeriesResponse
+def series = json_2.result.findAll {it.seriesGroupId == getSeriesResponse}
+def seriesGroupId = series.id
+log.info seriesGroupId
+
+/*
+assert if the response set returned from the Assign series request
+contains all the above ids
+*/
+for (id in resultId)
+{
+	log.info id
+	assert seriesGroupId.contains(id)
+}
+
+//get the login id
+def loginID = context.expand( '${Admin_Login#Response#$[\'identity\'][\'Id\']}' ) as int
+log.info loginID
+
+//match it against the assignedToId returned from the assign series response
+for (atId in assignedToId)
+{
+	log.info atId
+	assert atId == loginID
+}
+</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101634"/>
+</con:parameters><con:parameterOrder><con:entry>id</con:entry><con:entry>ignoreRegrade</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Unassign_Series" id="daddc9ef-52f1-4eca-bccc-b4307f658fd0"><con:settings/><con:config service="Excelsior API" resourcePath="/api/v1/Series/{id}/unassign" methodName="ApiV1SeriesByIdUnassignPost" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Unassign_Series" id="64b8ce67-6450-4db8-9d42-6aa7b5e76b36" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://excelsiorqa-api.eyekor.com</con:endpoint><con:request>{
+  "userId": "${Admin_Login#Response#$['identity']['Id']}"
+}</con:request><con:originalUri>https://excelsiorqa-api.eyekor.com/api/v1/Series/101634/unassign</con:originalUri><con:assertion type="JsonPath Match" id="41fd1682-7641-4781-84de-240b1aac5839" name="Match content of [isSuccess]"><con:configuration><path>$['isSuccess']</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="Authorization" value="${#Project#token_type}${#Project#current_token}"/>
+  <con:entry key="id" value="101634"/>
+</con:parameters><con:parameterOrder><con:entry>id</con:entry><con:entry>Authorization</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>seriesGroup</con:name><con:value/></con:property></con:properties><con:reportParameters/><con:breakPoints><con:testStepId>dea91b37-4539-4238-89b3-c657ed9a8bb6</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>96685e8f-4b8f-4699-b295-1a10dfb46f81</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>39fbcd0d-da90-4e7f-b8b6-918a13b95fd6</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>8dd00319-7f24-46a1-b929-e254b1dd5a96</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>5624c1d5-3138-4355-a45b-3be78dfbb901</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
